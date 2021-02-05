@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"log"
+	"os"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -26,7 +27,8 @@ func main() {
 	router.HandleFunc("/ussd", UssdEndPoint).Methods("POST")
 
 	// establish portnumber
-	var Port string
+	var Port string = os.Getenv("PORT")
+
 	if Port == "" {
 		Port = "8040"
 	}
