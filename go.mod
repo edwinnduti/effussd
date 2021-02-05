@@ -1,4 +1,4 @@
-module github.com/edwinnduti/ussd-in-go
+module github.com/edwinnduti/effussd
 
 go 1.14
 
