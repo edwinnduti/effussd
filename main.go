@@ -28,7 +28,7 @@ func main() {
 	// establish portnumber
 	var Port string
 	if Port == "" {
-		Port = "8060"
+		Port = "8040"
 	}
 
 	// set server
