@@ -1,9 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
-	"encoding/json"
 
 	"github.com/gorilla/mux"
 	// "github.com/urfave/negroni"
@@ -15,7 +15,7 @@ const (
 )
 
 type Form struct {
-	Text 	string 		`json:"text"`
+	Text string `json:"text"`
 }
 
 // the main function
@@ -28,12 +28,12 @@ func main() {
 	// establish portnumber
 	var Port string
 	if Port == "" {
-		Port = "8040"
+		Port = "8060"
 	}
 
 	// set server
 	/*n := negroni.Classic()
-    n.UseHandler(r)*/
+	  n.UseHandler(r)*/
 	server := &http.Server{
 		Handler: router, // n for negroni
 		Addr:    ":" + Port,
@@ -53,10 +53,10 @@ func RootEndpoint(w http.ResponseWriter, r *http.Request) {
 func UssdEndPoint(w http.ResponseWriter, r *http.Request) {
 	// set header content to type x-www-form-urlencoded
 	// Allow all origin to handle cors
-	w.Header().Set("Content-Type","application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin","*")
-	w.Header().Set("Access-Control-Allow-Methods","POST")
-	w.Header().Set("Access-Control-Allow-Headers","Content-Type")
+	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 	// instantiate form struct
 	var form Form
@@ -97,8 +97,8 @@ func UssdEndPoint(w http.ResponseWriter, r *http.Request) {
 }
 
 // Handle error function
-func Check(ERR error){
-	if ERR != nil{
+func Check(ERR error) {
+	if ERR != nil {
 		log.Fatal(ERR)
 	}
 }
